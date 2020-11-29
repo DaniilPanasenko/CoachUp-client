@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lingui/react": "^3.2.3",
+    "@material-ui/core": "^4.11.1",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
+    "bootstrap": "^4.5.3",
+    "flag-icon-css": "^3.5.0",
+    "get-google-fonts": "^1.2.2",
+    "i18next": "^19.8.4",
+    "json": "^10.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -15,8 +22,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-
+    "eject": "react-scripts eject",
+    "add-locale": "lingui add-locale",
+    "extract": "lingui extract",
+    "compile": "lingui compile"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +45,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"https://localhost:5001"
+  "devDependencies": {
+    "@lingui/cli": "^3.2.3",
+    "@lingui/macro": "^3.2.3"
+  }
 }
