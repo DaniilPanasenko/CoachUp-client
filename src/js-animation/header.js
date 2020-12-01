@@ -35,6 +35,9 @@ $(document).ready(function(){
 $(window).on('resize', function(){
   setTimeout(function(){ test(); }, 500);
 });
+$(window).on('change', function(){
+  setTimeout(function(){ test(); }, 500);
+});
 $(".navbar-toggler").click(function(){
   setTimeout(function(){ test(); });
 });

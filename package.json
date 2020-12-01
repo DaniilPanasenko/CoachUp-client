@@ -15,6 +15,7 @@
     "json": "^10.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-intl": "^5.10.6",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@lingui/cli": "^3.2.3",
+    "@lingui/loader": "^3.2.3",
     "@lingui/macro": "^3.2.3"
   }
 }

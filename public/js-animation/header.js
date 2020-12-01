@@ -30,7 +30,7 @@ function test(){
   });
 }
 $(document).ready(function(){
-  setTimeout(function(){ test(); });
+  setTimeout(function(){ test(); }, 500);
 });
 $(window).on('resize', function(){
   setTimeout(function(){ test(); }, 500);
