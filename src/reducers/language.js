@@ -6,7 +6,6 @@ import { i18n } from '@lingui/core'
 const initialState = {
   language : "en"
 }
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SET_LANGUAGE':

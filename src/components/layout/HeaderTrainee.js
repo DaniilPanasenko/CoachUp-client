@@ -11,16 +11,16 @@ import LanguageSelector  from './LanguageSelector.js'
 class HeaderTrainee extends React.Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-lg navbar-mainbg">
+      <nav class="navbar navbar-expand-lg navbar-custom">
       <a class="navbar-brand navbar-logo" href="#">CoachUp</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" >
       <i class="fas fa-bars text-white"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mr-auto">
-              <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+      <div class="collapse navbar-collapse" >
+          <ul class="nav nav-pills ml-auto mr-auto">
+
               <li class="nav-item active">
-                  <a class="nav-link" href="javascript:void(0);"><i class="fa fa-id-card fa-1x"></i><Trans>Profile</Trans></a>
+                  <a class="nav-link active" href="javascript:void(0);"><i class="fa fa-id-card fa-1x"></i><Trans>Profile</Trans></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="javascript:void(0);"><i class="fa fa-list-ul fa-1x "></i><Trans>Courses</Trans></a>
@@ -42,7 +42,7 @@ class HeaderTrainee extends React.Component {
                   DaniilPanasenko01
                   </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#"><Trans>Log Out</Trans></a>
+                  <button class="dropdown-item" href="#"><Trans>Log Out</Trans></button>
                 </div>
               </div>
             </form>
