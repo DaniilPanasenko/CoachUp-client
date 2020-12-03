@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setPage } from '../../../actions/page'
+import { logout } from '../../../actions/user'
 import {bindActionCreators} from 'redux'
 import logo from "../../../img/logo.png"
 import $ from 'jquery';
@@ -13,6 +14,10 @@ import LanguageSelector  from './LanguageSelector.js'
 class Profile extends React.Component {
   handleClick = (page) => {
     this.props.setPage(page)
+  }
+  logout = () =>{
+    this.props.logout()
+    this.props.setPage('signin')
   }
   getActive = (page) => {
     if(page==this.props.page.page){
@@ -32,7 +37,7 @@ class Profile extends React.Component {
             {this.props.user.login}
             </a>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <button className="dropdown-item" href="#"><Trans>Log Out</Trans></button>
+              <button className="dropdown-item" onClick={()=>this.logout()}><Trans>Log Out</Trans></button>
             </div>
           </div>
           <i className="fa fa-user-circle-o fa-2x white-icons " aria-hidden="true"></i>
@@ -42,7 +47,7 @@ class Profile extends React.Component {
     else{
       return(
         <div className="collapse navbar-collapse" >
-            <ul className="nav nav-pills ml-auto mr-auto">
+            <ul className="nav nav-pills ml-auto mr-auto pr-5">
                 <li className="nav-item active">
                     <a className={"nav-link "+this.getActive('signin')} onClick={()=>this.handleClick('signin')}><Trans>Sign In</Trans></a>
                 </li>
@@ -62,6 +67,6 @@ const mapStateToProps=(state)=>({
 })
 
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({setPage: setPage}, dispatch);
+  return bindActionCreators({setPage: setPage, logout: logout}, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(Profile)

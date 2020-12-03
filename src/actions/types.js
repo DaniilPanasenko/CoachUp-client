@@ -1,3 +1,11 @@
 export const SET_LANGUAGE = 'SET_LANGUAGE'
 
 export const SET_PAGE = 'SET_PAGE'
+
+export const SET_CURRENT_USER ='SET_CURRENT_USER'
+
+export const SET_LOGIN_EXCEPTION ='SET_LOGIN_EXCEPTION'
+
+export const LOGOUT = 'LOGOUT'
+
+export const SET_SHORT_PROFILE = 'SET_SHORT_PROFILE'
