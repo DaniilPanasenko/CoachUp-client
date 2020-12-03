@@ -8,7 +8,7 @@ const initialState = {
 }
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_LANGUAGE':
+    case SET_LANGUAGE:
       switch (action.payload){
         case 'ru':
           i18n.activate('ru');

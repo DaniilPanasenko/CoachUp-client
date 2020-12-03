@@ -12,7 +12,7 @@ import './App.css';
 import { messages as messagesUk} from './locales/uk/messages.js'
 import { messages as messagesEn} from './locales/en/messages.js'
 import { messages as messagesRu} from './locales/ru/messages.js'
-import HeaderTrainee from './components/layout/HeaderTrainee.js'
+import Header from './components/layout/header/Header.js'
 i18n.load('ru',messagesRu)
 i18n.load('uk',messagesUk)
 i18n.load('en',messagesEn)
@@ -24,8 +24,8 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <React.Fragment>
-          <HeaderTrainee/>
-          
+          <Header/>
+
         </React.Fragment>
       </BrowserRouter>
     </Provider>
