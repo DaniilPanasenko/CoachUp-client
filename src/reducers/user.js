@@ -2,7 +2,8 @@ import {
   SET_LANGUAGE,
   SET_CURRENT_USER,
   SET_LOGIN_EXCEPTION,
-  LOGOUT
+  LOGOUT,
+  SET_SHORT_PROFILE
 } from '../actions/types'
 
 function getInitialState(){
@@ -26,7 +27,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthorized: true,
-        login: action.payload
+        login: action.payload,
+        loginException: null
       }
       break;
     case SET_LOGIN_EXCEPTION:
@@ -42,6 +44,12 @@ export default (state = initialState, action) => {
         login: null,
         isAuthorized: false
       }
+    case SET_SHORT_PROFILE:
+    return{
+      ...state,
+      avatar: action.payload.avatar,
+      isCoach: action.payload.isCoach
+    }
     default:
       return state
   }

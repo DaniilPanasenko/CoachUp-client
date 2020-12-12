@@ -9,3 +9,5 @@ export const SET_LOGIN_EXCEPTION ='SET_LOGIN_EXCEPTION'
 export const LOGOUT = 'LOGOUT'
 
 export const SET_SHORT_PROFILE = 'SET_SHORT_PROFILE'
+
+export const GET_SPORTS = 'GET_SPORTS'

@@ -1,12 +1,21 @@
 {
   "Courses": "Курсы",
   "English": "Английский",
+  "First latter": "Первая буква",
   "Log Out": "Выход",
+  "Login": "Логин",
+  "Login Sign In": "Войти",
+  "Max 20 symbols": "Максимум 20 символов",
+  "Min 4 symbols": "Минимум 4 символа",
+  "Only latyns letters, numbers and _": "Только латинские буквы, цифры и _",
+  "Password": "Пароль",
   "Profile": "Профиль",
   "Rates": " Рейтинги",
+  "Register": "Зарегистрироваться",
   "Russian": "Русский",
   "Search": "Поиск",
-  "Ukrainian": "Украинский",
   "Sign In": "Вход",
-  "Sign Up": "Регистрация"
+  "Sign Up": "Регистрация",
+  "Ukrainian": "Украинский",
+  "{ex}": ""
 }

@@ -15,6 +15,7 @@ export const login = (userData) => (dispatch) => {
         if(res.data=="OK"){
           dispatch(setCurrentUser(userData.Login))
           dispatch(setPage('profile'))
+          dispatch(setShortProfile(userData.Login))
         }
         else{
           dispatch(loginException(res.data))
@@ -22,16 +23,15 @@ export const login = (userData) => (dispatch) => {
       }
     )
 }
-/*
-export const setShortProfile = (login) =>
-{
+
+export const setShortProfile = (login) => (dispatch) => {
   axios
-    .get('https://localhost:5001/authentication/userinfo/'+login, userData)
+    .get('https://localhost:5001/authentication/userinfo/'+login)
     .then((res) => {
-        dispatch
+        dispatch(shortProfile(res.data))
       }
     )
-}*/
+}
 export const logout = () => ({
   type: LOGOUT
 })
@@ -45,8 +45,8 @@ export const loginException = (exception) => ({
   type: SET_LOGIN_EXCEPTION,
   payload: exception
 })
-/*
+
 export const shortProfile = (info)=>({
   type: SET_SHORT_PROFILE,
-  payload: exception
-})*/
+  payload: info
+})

@@ -15,6 +15,7 @@
     "get-google-fonts": "^1.2.2",
     "i18next": "^19.8.4",
     "json": "^10.0.0",
+    "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-intl": "^5.10.6",
@@ -28,7 +29,8 @@
     "eject": "react-scripts eject",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
-    "compile": "lingui compile"
+    "compile": "lingui compile",
+    "scss": "node-sass -watch scss -o css"
   },
   "eslintConfig": {
     "extends": [

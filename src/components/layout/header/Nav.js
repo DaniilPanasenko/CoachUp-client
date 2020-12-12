@@ -38,12 +38,14 @@ class Nav extends React.Component {
                 <Trans>Courses</Trans>
               </a>
             </li>
+            {!this.props.user.isCoach?
             <li className="nav-item">
               <a className={"nav-link "+this.getActive('rates')} onClick={()=>this.handleClick('rates')}>
                 <i className="fa fa-trophy fa-1x "></i>
                 <Trans>Rates</Trans>
               </a>
             </li>
+            :null}
             <li className="nav-item">
               <a className={"nav-link "+this.getActive('search')} onClick={()=>this.handleClick('search')}>
                 <i className="fa fa-search fa-1x "></i>

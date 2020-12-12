@@ -1,12 +1,21 @@
 {
   "Courses": "Courses",
   "English": "English",
+  "First latter": "First latter",
   "Log Out": "Log Out",
+  "Login": "Login",
+  "Login Sign In": "Login",
+  "Max 20 symbols": "Max 20 symbols",
+  "Min 4 symbols": "Min 4 symbols",
+  "Only latyns letters, numbers and _": "Only latyns letters, numbers and _",
+  "Password": "Password",
   "Profile": "Profile",
   "Rates": "Rates",
+  "Register": "Register",
   "Russian": "Russian",
   "Search": "Search",
-  "Ukrainian": "Ukrainian",
   "Sign In": "Sign In",
-  "Sign Up": "Sign Up"
+  "Sign Up": "Sign Up",
+  "Ukrainian": "Ukrainian",
+  "{ex}": "{ex}"
 }

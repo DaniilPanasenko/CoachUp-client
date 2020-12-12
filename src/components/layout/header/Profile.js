@@ -31,7 +31,11 @@ class Profile extends React.Component {
     if(this.props.user.isAuthorized){
       return(
         <div className="d-inline-flex  flex-row align-items-center">
-          <i className="fa fa-bell-o fa-1x white-icons" aria-hidden="true"></i>
+        <button type="button" class="btn btn-transparent">
+        <i className="fa fa-envelope fa-1x white-icons" aria-hidden="true"></i>
+<span class="badge badge-light badge-pill notifications">4</span>
+</button>
+
           <div className="dropdown d-inline-flex flex-row align-items-center">
             <a className="link-profile nav-link dropdown-toggle" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {this.props.user.login}

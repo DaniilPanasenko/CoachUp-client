@@ -1,3 +1,8 @@
+
+:root {
+  --nav-color: #5161ce;
+}
+
 .App {
   text-align: center;
 }
@@ -38,6 +43,9 @@
 }
 
 /* change the color of active or hovered links */
+.notifications{
+  color: var(--nav-color);
+}
 
 .btn-transparent{
   background-color: Transparent;
@@ -90,7 +98,7 @@ i {
 	color: #fff;
 }
 .navbar-custom{
-	background-color: #5161ce;
+	background-color: var(--nav-color);
 	padding: 0px;
 }
 .nav-custom .nav-item{
