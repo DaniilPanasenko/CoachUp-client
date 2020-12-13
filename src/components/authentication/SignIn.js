@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { Trans } from '@lingui/macro';
-import { setPage } from '../../actions/page'
 import { login } from '../../actions/user'
 import { i18n } from '@lingui/core'
 
@@ -16,7 +15,7 @@ class SignIn extends React.Component{
     }
   }
   handleRegisterClick = () => {
-    this.props.setPage('signup')
+      this.props.history.push('/signup')
   }
 
   handleLoginClick = () => {
@@ -41,8 +40,12 @@ class SignIn extends React.Component{
     const value = e.target.value;
     this.setState({[name]: value});
   }
+  componentWillReceiveProps(nextProps){
+    if (nextProps.user.isAuthorized) {
+      this.props.history.push('/profile')
+    }
+  }
   render(){
-    if(this.props.page.page=='signin'){
       return (
         <div class="container mt-5">
           <div class="col-md-4 offset-md-4">
@@ -78,21 +81,15 @@ class SignIn extends React.Component{
           </div>
         </div>
       );
-    }
-    else{
-      return null;
-    }
   }
 }
 
 const mapStateToProps=(state)=>({
-  page: state.page,
   user: state.user
 })
 function matchDispatchToProps(dispatch){
   return bindActionCreators(
     {
-      setPage: setPage,
       login: login
     }, dispatch);
 }

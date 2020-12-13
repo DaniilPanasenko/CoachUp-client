@@ -2,31 +2,35 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { setPage } from '../../../actions/page'
-import { setProfileLogin } from '../../../actions/page'
 import {bindActionCreators} from 'redux'
 import logo from "../../../img/logo.png"
 import { Trans } from '@lingui/macro';
 
 
 class Nav extends React.Component {
-  handleClick = (page) => {
-    this.props.setPage(page);
-    if(page=='profile'){
-      this.props.setProfileLogin(this.props.user.login)
-    }
-  }
-  getActive = (page) => {
-    if(page==this.props.page.page){
-      return "active";
-    }
-    else{
-      return "";
-    }
-  }
+
   render() {
     if(this.props.user.isAuthorized){
       return (
+        <div className="collapse navbar-collapse" >
+            <ul className="nav nav-pills ml-5 pr-5">
+                <Link className="nav-link" to="/profile">
+                  <Trans>Profile</Trans>
+                </Link>
+                <Link className="nav-link" to="/courses">
+                  <Trans>Courses</Trans>
+                </Link>
+                {!this.props.user.isCoach?
+                <Link className="nav-link" to="/rates">
+                  <Trans>Rates</Trans>
+                </Link>
+                :null}
+                <Link className="nav-link" to="/search">
+                  <Trans>Search</Trans>
+                </Link>
+            </ul>
+        </div>
+        /*
         <div className="collapse navbar-collapse" >
           <ul className="nav nav-pills ml-auto mr-auto">
             <li className="nav-item active">
@@ -57,6 +61,7 @@ class Nav extends React.Component {
             </li>
           </ul>
         </div>
+        */
       );
     }
     return (
@@ -67,14 +72,12 @@ class Nav extends React.Component {
 }
 
 const mapStateToProps=(state)=>({
-  user : state.user,
-  page : state.page
+  user : state.user
 })
 
 function matchDispatchToProps(dispatch){
   return bindActionCreators({
-    setPage: setPage,
-    setProfileLogin: setProfileLogin
+
   }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(Nav)

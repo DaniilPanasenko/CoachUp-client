@@ -8,8 +8,6 @@ import {
   SET_REGISTRATION_EXCEPTION,
   AFTER_LOGOUT
 } from './types'
-import {setProfilePage} from './page'
-import {setProfileLogin} from './page'
 
 export const login = (userData) => (dispatch) => {
   axios
@@ -17,7 +15,6 @@ export const login = (userData) => (dispatch) => {
     .then((res) => {
         if(res.data=="OK"){
           dispatch(setCurrentUser(userData.login))
-          setProfilePage(userData.login)
           dispatch(setShortProfile(userData.login))
         }
         else{
@@ -33,7 +30,6 @@ export const registration = (userData) => (dispatch) => {
     .then((res) => {
         if(res.data=="OK"){
           dispatch(setCurrentUser(userData.login))
-          dispatch(setProfilePage(userData.login))
           dispatch(setShortProfile(userData.login))
         }
         else{

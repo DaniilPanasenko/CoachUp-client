@@ -2,8 +2,6 @@ import axios from 'axios'
 import {
   SET_PROFILE
 } from './types'
-import {setPage} from './page'
-import {setProfileLogin} from './page'
 
 export const getProfile = (login) => (dispatch) => {
   axios

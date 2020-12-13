@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { setLanguage } from '../../../actions/language'//==============
 import {bindActionCreators} from 'redux'
 import logo from "../../../img/logo.png"
 import { Trans } from '@lingui/macro';
@@ -33,7 +32,4 @@ const mapStateToProps=(state)=>({
   user : state.user
 })
 
-function matchDispatchToProps(dispatch){
-  return bindActionCreators({setLanguage: setLanguage}, dispatch);
-}
-export default connect(mapStateToProps, matchDispatchToProps)(Header)
+export default connect(mapStateToProps)(Header)
