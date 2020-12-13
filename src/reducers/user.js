@@ -3,7 +3,9 @@ import {
   SET_CURRENT_USER,
   SET_LOGIN_EXCEPTION,
   LOGOUT,
-  SET_SHORT_PROFILE
+  SET_SHORT_PROFILE,
+  SET_REGISTRATION_EXCEPTION,
+  AFTER_LOGOUT
 } from '../actions/types'
 
 function getInitialState(){
@@ -18,7 +20,9 @@ const initialState = {
   login: getInitialState(),
   isCoach: false,
   avatar: null,
-  loginException: null
+  loginException: null,
+  registrationException: null,
+  logout: false
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -37,12 +41,26 @@ export default (state = initialState, action) => {
         loginException: action.payload
       }
       break;
+    case SET_REGISTRATION_EXCEPTION:
+      return{
+        ...state,
+        registrationException: action.payload
+      }
+      break;
     case LOGOUT:
       sessionStorage.removeItem('login')
       return{
         ...state,
         login: null,
-        isAuthorized: false
+        isAuthorized: false,
+        loginException: null,
+        registrationException: null,
+        logout: true
+      }
+    case AFTER_LOGOUT:
+      return{
+        ...state,
+        logout: false
       }
     case SET_SHORT_PROFILE:
     return{

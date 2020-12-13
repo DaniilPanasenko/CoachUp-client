@@ -4,6 +4,8 @@ import {bindActionCreators} from 'redux'
 import { setPage } from '../../actions/page'
 import { Trans } from '@lingui/macro';
 import { getSports } from '../../actions/sport'
+import { registration } from '../../actions/user'
+import { i18n } from '@lingui/core'
 
 class SignUp extends React.Component{
   constructor() {
@@ -271,143 +273,188 @@ class SignUp extends React.Component{
     return "is-invalid";
   }
 
+  handleRegistration = () => {
+    let registration = true;
+    if(!this.state.loginValid){
+      this.setState({loginStart: true});
+      registration = false;
+    }
+    if(!this.state.passwordValid){
+      this.setState({passwordStart: true});
+      registration = false;
+    }
+    if(!this.state.passwordConfirmValid){
+      this.setState({passwordConfirmStart: true});
+      registration = false;
+    }
+    if(!this.state.emailValid){
+      this.setState({emailStart: true});
+      registration = false;
+    }
+    if(!this.state.nameValid){
+      this.setState({nameStart: true});
+      registration = false;
+    }
+    if(!this.state.surnameValid){
+      this.setState({surnameStart: true});
+      registration = false;
+    }
+    if(this.state.isCoach && this.state.sport=='Sport'){
+      registration = false;
+    }
+    if(registration){
+      let account = {
+        login: this.state.login,
+        password: this.state.password,
+        email: this.state.email,
+        name: this.state.name,
+        surname: this.state.surname,
+        sex: this.state.sex,
+        isCoach: this.state.isCoach,
+        sport: this.state.sport
+      }
+      this.props.registration(account);
+    }
+  }
+  handleLoginClick = () => {
+    this.props.setPage('signin')
+  }
+
   render(){
     if(this.props.page.page=='signup'){
-  return (
-    <div class="container mt-5">
-  <div class="col-md-6 offset-md-3">
-    <div class="card">
-      <div class="card-header text-center">
-        <h4>Sign Up</h4>
-      </div>
-      <div class="card-body">
-        <form>
-<div class="form-row ">
-          <div class="form-group col-7">
-            <label for="login">Login</label>
-            <input name="login" id="login" class={"form-control "+this.getLoginStatus()} type="login" value={this.state.login} onChange={this.handleUserInput}/>
-            {this.state.loginStart && !this.state.loginValid?
-              this.state.loginError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
-            :null}
-          </div>
-          <div class="form-group col">
-            <label >Account type</label>
-            <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-              <label class="btn btn-info active">
-                <input type="radio" name="accountRadioButtons" id="traineeRadioButton" onClick={this.handlerAccount} autocomplete="off" checked />
-                Trainee
-              </label>
-              <label class="btn btn-info">
-                <input type="radio" name="accountRadioButtons" id="coachRadioButton" onClick={this.handlerAccount} autocomplete="off"/>
-                Coach
-              </label>
+      return (
+        <div class="container mt-5">
+          <div class="col-md-6 offset-md-3">
+            <div class="card">
+              <div class="card-header text-center">
+                <h4><Trans>Sign Up</Trans></h4>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="form-row ">
+                    <div class="form-group col-7">
+                      <label for="login"><Trans>Login</Trans></label>
+                      <input name="login" id="login" class={"form-control "+this.getLoginStatus()} type="login" value={this.state.login} onChange={this.handleUserInput}/>
+                      {this.state.loginStart && !this.state.loginValid?
+                        this.state.loginError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
+                      :null}
+                    </div>
+                    <div class="form-group col">
+                      <label ><Trans>Account type</Trans></label>
+                      <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
+                        <label class="btn btn-info active">
+                          <input type="radio" name="accountRadioButtons" id="traineeRadioButton" onClick={this.handlerAccount} autocomplete="off" checked />
+                          <Trans>Trainee</Trans>
+                        </label>
+                        <label class="btn btn-info">
+                          <input type="radio" name="accountRadioButtons" id="coachRadioButton" onClick={this.handlerAccount} autocomplete="off"/>
+                          <Trans>Coach</Trans>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  {this.state.isCoach?
+                    <div class="form-group">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-info dropdown-toggle col-12" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {this.state.sport}
+                        </button>
+                        <div class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton">
+                        {
+                          this.props.sport.listSports.map((item)=>{
+                                  return (<button class="dropdown-item" type='button' value={item} onClick={()=>this.handlerSport(item)}>{i18n._(item)}</button>)
+                          }, this)
+                        }
+                        </div>
+                      </div>
+                    </div>
+                  :null}
+                  <div class="form-group ">
+                    <label for="email"><Trans>Email</Trans></label>
+                    <input name="email" id="email" class={"form-control "+this.getEmailStatus()}  value={this.state.email} onChange={this.handleUserInput}/>
+                    {this.state.emailStart && !this.state.emailValid?
+                      this.state.emailError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
+                    :null}
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-4">
+                      <label for="name"><Trans>Name</Trans></label>
+                      <input name="name" id="name" class={"form-control "+this.getNameStatus()} value={this.state.name} onChange={this.handleUserInput}/>
+                      {this.state.nameStart && !this.state.nameValid?
+                        this.state.nameError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
+                      :null}
+                    </div>
+                    <div class="form-group col-5">
+                      <label for="surname"><Trans>Surname</Trans></label>
+                      <input name="surname" id="surname" class={"form-control "+this.getSurnameStatus()} value={this.state.surname} onChange={this.handleUserInput}/>
+                      {this.state.surnameStart && !this.state.surnameValid?
+                        this.state.surnameError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
+                      :null}
+                    </div>
+                    <div class="form-group col">
+                      <label><Trans>Sex</Trans></label>
+                      <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
+                        <label class="btn btn-info active">
+                          <input type="radio" name="sexRadioButtons" id="maleRadioButton" onClick={this.handlerSex} autocomplete="off" checked />
+                          <i class="fa fa-male mr-0"></i>
+                        </label>
+                        <label class="btn btn-info">
+                          <input type="radio" name="sexRadioButtons" id="femaleRadioButton" onClick={this.handlerSex} autocomplete="off"/>
+                          <i class="fa fa-female mr-0"></i>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password"><Trans>Password</Trans></label>
+                    <input name="password" id="password" class={"form-control "+this.getPasswordStatus()} type="password" value={this.state.password} onChange={this.handleUserInput}/>
+                    {this.state.passwordStart && !this.state.passwordValid?
+                      this.state.passwordError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
+                    :null}
+                  </div>
+                  <div class="form-group">
+                    <label for="password"><Trans>Repeat password</Trans></label>
+                    <input name="passwordConfirm" id="passwordConfirm" class={"form-control "+this.getPasswordConfirmStatus()} type="password" value={this.state.passwordConfirm} onChange={this.handleUserInput}/>
+                    {this.state.passwordConfirmStart && !this.state.passwordConfirmValid?
+                      this.state.passwordConfirmError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
+                    :null}
+                  </div>
+                </form>
+                {this.props.user.registrationException != null?
+                  <div class="alert alert-danger pt-2 pb-2 mt-3" role="alert" >
+                    <i class="fa fa-times-circle"></i>
+                    {i18n._(this.props.user.registrationException)}
+                  </div>
+                : null}
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block" onClick={()=>this.handleRegistration()}><Trans>Register</Trans></button>
+                </div>
+                <div class="form-group">
+                  <a href="#" class="btn btn-success btn-block" onClick={()=>this.handleLoginClick()}><Trans>Login Sign In</Trans></a>
+                </div>
+              </div>
             </div>
           </div>
-</div>
-{this.state.isCoach?
-  <div class="form-group">
-    <div class="dropdown">
-  <button class="btn btn-outline-info dropdown-toggle col-12" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {this.state.sport}
-  </button>
-  <div class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton">
-  {
-    this.props.sport.listSports.map((item)=>{
-            return (<button class="dropdown-item" type='button' value={item} onClick={()=>this.handlerSport(item)}>{item}</button>)
-    }, this)
+        </div>
+      );
+    }
+    else{
+      return null;
+    }
   }
-  </div>
-  </div>
-  </div>
-:null}
-          <div class="form-group ">
-            <label for="email">Email</label>
-            <input name="email" id="email" class={"form-control "+this.getEmailStatus()}  value={this.state.email} onChange={this.handleUserInput}/>
-            {this.state.emailStart && !this.state.emailValid?
-              this.state.emailError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
-            :null}
-          </div>
-
-<div class="form-row">
-          <div class="form-group col-4">
-            <label for="name">Name</label>
-            <input name="name" id="name" class={"form-control "+this.getNameStatus()} onChange={this.handleUserInput}/>
-            {this.state.nameStart && !this.state.nameValid?
-              this.state.nameError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
-            :null}
-          </div>
-
-          <div class="form-group col-5">
-            <label for="surname">Surname</label>
-            <input name="surname" id="surname" class={"form-control "+this.getSurnameStatus()} onChange={this.handleUserInput}/>
-            {this.state.surnameStart && !this.state.surnameValid?
-              this.state.surnameError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
-            :null}
-          </div>
-
-          <div class="form-group col">
-            <label>Sex</label>
-            <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-              <label class="btn btn-info active">
-                <input type="radio" name="sexRadioButtons" id="maleRadioButton" onClick={this.handlerSex} autocomplete="off" checked />
-                <i class="fa fa-male mr-0"></i>
-              </label>
-              <label class="btn btn-info">
-                <input type="radio" name="sexRadioButtons" id="femaleRadioButton" onClick={this.handlerSex} autocomplete="off"/>
-                <i class="fa fa-female mr-0"></i>
-              </label>
-            </div>
-          </div>
-</div>
-
-          <div class="form-group">
-                <label for="password">Password</label>
-            <input name="password" id="password" class={"form-control "+this.getPasswordStatus()} type="password" value={this.state.password} onChange={this.handleUserInput}/>
-            {this.state.passwordStart && !this.state.passwordValid?
-              this.state.passwordError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
-            :null}
-          </div>
-
-          <div class="form-group">
-                <label for="password">Repeat password</label>
-            <input name="passwordConfirm" id="passwordConfirm" class={"form-control "+this.getPasswordConfirmStatus()} type="password" value={this.state.passwordConfirm} onChange={this.handleUserInput}/>
-
-          {this.state.passwordConfirmStart && !this.state.passwordConfirmValid?
-            this.state.passwordConfirmError.map(function(ex){return(<div class="invalid-feedback">{ex}</div>);})
-          :null}
-          </div>
-        </form>
-
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Register</button>
-        </div>
-        <div class="form-group">
-          <a href="#" class="btn btn-success btn-block" onClick={()=>this.handleLoginClick()}>Login</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-  );
-}
-else{
-  return(
-    <div></div>
-  );
-}
-}
 }
 
 
 const mapStateToProps=(state)=>({
   page: state.page,
-  sport: state.sport
+  sport: state.sport,
+  user: state.user
 })
 function matchDispatchToProps(dispatch){
   return bindActionCreators(
     {
       setPage: setPage,
+      registration: registration,
       getSports: getSports
     }, dispatch);
 }
