@@ -5,10 +5,9 @@ import { connect } from 'react-redux'
 import { setLanguage } from '../../../actions/language'//==============
 import {bindActionCreators} from 'redux'
 import logo from "../../../img/logo.png"
-import $ from 'jquery';
 import { Trans } from '@lingui/macro';
 import LanguageSelector  from './LanguageSelector'
-import Profile from './Profile'
+import HeaderProfile from './HeaderProfile'
 import Nav from './Nav'
 
 
@@ -23,7 +22,7 @@ class Header extends React.Component {
         <Nav />
         <div className="d-inline-flex  flex-row align-items-center">
           <LanguageSelector />
-          <Profile />
+          <HeaderProfile />
         </div>
       </nav>
     )

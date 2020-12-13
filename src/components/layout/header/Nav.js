@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setPage } from '../../../actions/page'
+import { setProfileLogin } from '../../../actions/page'
 import {bindActionCreators} from 'redux'
 import logo from "../../../img/logo.png"
-import $ from 'jquery';
 import { Trans } from '@lingui/macro';
 
 
 class Nav extends React.Component {
   handleClick = (page) => {
-    this.props.setPage(page)
+    this.props.setPage(page);
+    if(page=='profile'){
+      this.props.setProfileLogin(this.props.user.login)
+    }
   }
   getActive = (page) => {
     if(page==this.props.page.page){
@@ -69,6 +72,9 @@ const mapStateToProps=(state)=>({
 })
 
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({setPage: setPage}, dispatch);
+  return bindActionCreators({
+    setPage: setPage,
+    setProfileLogin: setProfileLogin
+  }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(Nav)

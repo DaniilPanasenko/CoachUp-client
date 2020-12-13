@@ -14,6 +14,7 @@ import { messages as messagesRu} from './locales/ru/messages.js'
 import Header from './components/layout/header/Header'
 import SignIn from './components/authentication/SignIn'
 import SignUp from './components/authentication/SignUp'
+import Profile from './components/profile/Profile'
 
 i18n.load('ru',messagesRu)
 i18n.load('uk',messagesUk)
@@ -21,14 +22,18 @@ i18n.load('en',messagesEn)
 i18n.activate('en')
 
 function App() {
+  const { history } = this.props
   return (
     <I18nProvider i18n={i18n}>
     <Provider store={store}>
       <BrowserRouter>
         <React.Fragment>
           <Header/>
-          <SignIn/>
-          <SignUp/>
+          <Switch>
+            <Route history={history} path='/signin' component={SignIn} />
+            <Route history={history} path='/signup' component={SignUp} />
+            <Route history={history} path='/profile/:login' component={Profile} />
+          </Switch>
         </React.Fragment>
       </BrowserRouter>
     </Provider>

@@ -11,7 +11,7 @@ import { Trans } from '@lingui/macro';
 import LanguageSelector  from './LanguageSelector.js'
 
 
-class Profile extends React.Component {
+class HeaderProfile extends React.Component {
   handleClick = (page) => {
     this.props.setPage(page)
   }
@@ -73,4 +73,4 @@ const mapStateToProps=(state)=>({
 function matchDispatchToProps(dispatch){
   return bindActionCreators({setPage: setPage, logout: logout}, dispatch);
 }
-export default connect(mapStateToProps, matchDispatchToProps)(Profile)
+export default connect(mapStateToProps, matchDispatchToProps)(HeaderProfile)
