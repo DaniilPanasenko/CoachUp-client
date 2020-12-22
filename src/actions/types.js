@@ -11,3 +11,5 @@ export const AFTER_LOGOUT = 'AFTER_LOGOUT'
 export const SET_PROFILE = 'SET_PROFILE'
 
 export const SET_MY_COURSES_LIST = 'SET_MY_COURSES_LIST'
+
+export const SET_COURSE_INFO = 'SET_COURSE_INFO'

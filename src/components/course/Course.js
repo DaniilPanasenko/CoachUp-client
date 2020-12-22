@@ -3,32 +3,34 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core'
-import { getProfile } from '../../actions/profile'
+import { getInfo } from '../../actions/course'
+import  Info  from './Info'
 
 class Course extends React.Component{
 
 
   componentDidMount() {
-    //this.props.getProfile(this.props.match.params.login)
+    this.props.getInfo(this.props.match.params.id)
   }
 
   render(){
       return (
         <div>
-        {this.props.match.params.id}
+          <Info />
         </div>
       );
   }
 }
 
 const mapStateToProps=(state)=>({
+  course: state.course,
   user: state.user,
   profile: state.profile
 })
 function matchDispatchToProps(dispatch){
   return bindActionCreators(
     {
-      getProfile: getProfile
+      getInfo: getInfo
     }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(Course)

@@ -6,6 +6,7 @@ import sport from './sport'
 import profile from './profile'
 import myCoursesList from './myCoursesList'
 import admin from './admin'
+import course from './course'
 
 export default combineReducers(
   {
@@ -14,5 +15,6 @@ export default combineReducers(
     sport: sport,
     profile: profile,
     myCoursesList: myCoursesList,
-    admin: admin
+    admin: admin,
+    course: course
   })
