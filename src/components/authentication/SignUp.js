@@ -46,6 +46,12 @@ class SignUp extends React.Component{
     }
   }
 
+  componentDidMount() {
+    if(this.props.user.isAuthorized){
+      this.props.history.push('/profile/'+this.props.user.login)
+    }
+  }
+
   handleUserInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -320,7 +326,7 @@ class SignUp extends React.Component{
   }
   componentWillReceiveProps(nextProps){
     if (nextProps.user.isAuthorized) {
-      this.props.history.push('/profile')
+      this.props.history.push('/profile/'+nextProps.user.login)
     }
   }
   render(){

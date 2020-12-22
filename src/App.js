@@ -15,6 +15,9 @@ import Header from './components/layout/header/Header'
 import SignIn from './components/authentication/SignIn'
 import SignUp from './components/authentication/SignUp'
 import Profile from './components/profile/Profile'
+import MyCoursesList from './components/courses/MyCoursesList'
+import Admin from './components/admin/Admin'
+import Course from './components/course/Course'
 import browserHistory from 'history/createBrowserHistory'
 const history =browserHistory();
 
@@ -34,6 +37,9 @@ function App() {
             <Route history={history} path='/signin' component={SignIn} />
             <Route history={history} path='/signup' component={SignUp} />
             <Route history={history} path='/profile/:login' component={Profile} />
+            <Route history={history} path='/courses' component={MyCoursesList} />
+            <Route history={history} path='/course/:id' component={Course} />
+            <Route history={history} path='/admin' component={Admin} />
           </Switch>
         </React.Fragment>
       </BrowserRouter>

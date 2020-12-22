@@ -15,10 +15,17 @@ function getInitialState(){
   return null
 }
 
+function getInitialIsCoach(){
+  if(sessionStorage.getItem('isCoach')!=null){
+    return sessionStorage.getItem('isCoach')
+  }
+  return false
+}
+
 const initialState = {
   isAuthorized: getInitialState()!=null,
   login: getInitialState(),
-  isCoach: false,
+  isCoach: getInitialIsCoach(),
   avatar: null,
   loginException: null,
   registrationException: null,
@@ -49,6 +56,7 @@ export default (state = initialState, action) => {
       break;
     case LOGOUT:
       sessionStorage.removeItem('login')
+      sessionStorage.removeItem('isCoach')
       return{
         ...state,
         login: null,
@@ -63,6 +71,7 @@ export default (state = initialState, action) => {
         logout: false
       }
     case SET_SHORT_PROFILE:
+    sessionStorage.setItem('isCoach', action.payload.isCoach)
     return{
       ...state,
       avatar: action.payload.avatar,

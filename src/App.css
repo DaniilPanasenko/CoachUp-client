@@ -46,7 +46,11 @@
 .notifications{
   color: var(--nav-color);
 }
-
+.avatar img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
 .btn-transparent{
   background-color: Transparent;
 }
@@ -55,6 +59,10 @@
 }
 .btn-color-white:hover{
   color: #ffffff;
+}
+
+.btn-warning{
+  color: White;
 }
 .flag{
   border-radius: 3px 3px 3px 3px;

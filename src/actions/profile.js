@@ -9,7 +9,6 @@ export const getProfile = (login) => (dispatch) => {
     .then((res) => {
         res.data.login = login;
         dispatch(setProfile(res.data));
-        dispatch(setProfileLogin(login));
       }
     )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { Trans } from '@lingui/macro';
-import { login } from '../../actions/user'
+import { login, loginException } from '../../actions/user'
 import { i18n } from '@lingui/core'
 
 class SignIn extends React.Component{
@@ -14,37 +14,62 @@ class SignIn extends React.Component{
       loginSend: false
     }
   }
+
+  componentDidMount() {
+    if(this.props.user.isAuthorized){
+      this.props.history.push('/profile/'+this.props.user.login)
+    }
+  }
+
   handleRegisterClick = () => {
       this.props.history.push('/signup')
   }
 
   handleLoginClick = () => {
     this.setState({loginSend: true})
-    if(this.state.login!='' && this.state.password!='')
-    this.props.login(this.state)
+    let t = true;
+    for(let i=0; i<this.props.admin.ban.length; i++){
+      if(this.props.admin.ban[i]==this.state.login){
+        t=false;
+        this.props.loginException("You are banned")
+      }
+    }
+    if(t && this.state.login!='' && this.state.password!=''){
+      this.props.login({login:this.state.login, password:this.state.password})
+    }
   }
+
   getLoginStatus = () => {
     if(this.state.login=='' && this.state.loginSend){
       return "is-invalid";
     }
     return "";
   }
+
   getPasswordStatus = () => {
     if(this.state.password=='' && this.state.loginSend){
       return "is-invalid";
     }
     return "";
   }
+
   handleUserInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({[name]: value});
   }
+
   componentWillReceiveProps(nextProps){
     if (nextProps.user.isAuthorized) {
-      this.props.history.push('/profile')
+      if(nextProps.user.login=='admin'){
+        this.props.history.push('/admin')
+      }
+      else{
+        this.props.history.push('/profile/'+nextProps.user.login)
+      }
     }
   }
+
   render(){
       return (
         <div class="container mt-5">
@@ -85,12 +110,14 @@ class SignIn extends React.Component{
 }
 
 const mapStateToProps=(state)=>({
-  user: state.user
+  user: state.user,
+  admin: state.admin
 })
 function matchDispatchToProps(dispatch){
   return bindActionCreators(
     {
-      login: login
+      login: login,
+      loginException: loginException
     }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(SignIn)

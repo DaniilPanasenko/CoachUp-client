@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from '../../../actions/user'
 import {bindActionCreators} from 'redux'
-import logo from "../../../img/logo.png"
 import $ from 'jquery';
 import { Trans } from '@lingui/macro';
 import LanguageSelector  from './LanguageSelector.js'
@@ -28,7 +27,7 @@ class HeaderProfile extends React.Component {
         <div className="d-inline-flex  flex-row align-items-center">
         <button type="button" class="btn btn-transparent">
         <i className="fa fa-envelope fa-1x white-icons" aria-hidden="true"></i>
-<span class="badge badge-light badge-pill notifications">4</span>
+<span class="badge badge-light badge-pill notifications">0</span>
 </button>
 
           <div className="dropdown d-inline-flex flex-row align-items-center">

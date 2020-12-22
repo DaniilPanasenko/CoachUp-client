@@ -7,12 +7,15 @@ const initialState = {
   surname: null,
   sex: null,
   sport: null,
-  rate: null,
+  ratePoints: 0,
+  ratePlace: 0,
   countFriends: 0,
   countSubscribes: 0,
   countSubscribers: 0,
   login: null,
-  isCoach: null
+  isCoach: null,
+  avatar: null,
+  aboutMe: null
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -28,7 +31,11 @@ export default (state = initialState, action) => {
         countFriends: action.payload.isCoach? null: action.payload.count_Friends,
         countSubscribes: action.payload.isCoach? null: action.payload.count_Subscribes,
         countSubscribers: action.payload.isCoach? action.payload.count_Subscribers: null,
-        login: action.payload.login
+        login: action.payload.login,
+        avatar: action.payload.avatar,
+        aboutMe: action.payload.aboutMe,
+        ratePoints: action.payload.rate.points,
+        ratePlace: action.payload.rate.place,
       }
     default:
       return state

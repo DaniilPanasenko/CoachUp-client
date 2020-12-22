@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import logo from "../../../img/logo.png"
 import { Trans } from '@lingui/macro';
 import LanguageSelector  from './LanguageSelector'
 import HeaderProfile from './HeaderProfile'

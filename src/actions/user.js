@@ -9,10 +9,17 @@ import {
   AFTER_LOGOUT
 } from './types'
 
+const instance = axios.create({
+  headers: {"Access-Control-Allow-Origin": true},
+  withCredentials: true,
+  baseURL: 'https://localhost:5001'
+})
+
 export const login = (userData) => (dispatch) => {
-  axios
-    .post('https://localhost:5001/authentication/login', userData)
+  instance
+    .post('authentication/login', userData)
     .then((res) => {
+        console.log(res)
         if(res.data=="OK"){
           dispatch(setCurrentUser(userData.login))
           dispatch(setShortProfile(userData.login))
@@ -22,6 +29,7 @@ export const login = (userData) => (dispatch) => {
         }
       }
     )
+    .catch(err => console.log(err))
 }
 
 export const registration = (userData) => (dispatch) => {

@@ -4,18 +4,18 @@ import {bindActionCreators} from 'redux'
 import { Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core'
 import { getProfile } from '../../actions/profile'
-import Info from './Info'
 
-class Profile extends React.Component{
+class Course extends React.Component{
+
 
   componentDidMount() {
-    this.props.getProfile(this.props.match.params.login)
+    //this.props.getProfile(this.props.match.params.login)
   }
 
   render(){
       return (
         <div>
-          <Info />
+        {this.props.match.params.id}
         </div>
       );
   }
@@ -31,4 +31,4 @@ function matchDispatchToProps(dispatch){
       getProfile: getProfile
     }, dispatch);
 }
-export default connect(mapStateToProps, matchDispatchToProps)(Profile)
+export default connect(mapStateToProps, matchDispatchToProps)(Course)
