@@ -3,13 +3,10 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core'
-import { getInfo } from '../../actions/course'
-import  Info  from './Info'
-import TrainingsList from './TrainingsList'
+import { getInfo } from '../../actions/training'
+import Info from './Info'
 
-class Course extends React.Component{
-
-
+class Training extends React.Component{
   componentDidMount() {
     this.props.getInfo(this.props.match.params.id)
   }
@@ -17,8 +14,7 @@ class Course extends React.Component{
   render(){
       return (
         <div>
-          <Info />
-          <TrainingsList courseId={this.props.match.params.id} history={this.props.history}/>
+          <Info/>
         </div>
       );
   }
@@ -27,7 +23,7 @@ class Course extends React.Component{
 const mapStateToProps=(state)=>({
   course: state.course,
   user: state.user,
-  profile: state.profile
+  training: state.training
 })
 function matchDispatchToProps(dispatch){
   return bindActionCreators(
@@ -35,4 +31,4 @@ function matchDispatchToProps(dispatch){
       getInfo: getInfo
     }, dispatch);
 }
-export default connect(mapStateToProps, matchDispatchToProps)(Course)
+export default connect(mapStateToProps, matchDispatchToProps)(Training)

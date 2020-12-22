@@ -11,7 +11,7 @@ import AddForm from './AddForm'
 class TrainingsList extends React.Component{
 
   componentDidMount() {
-    this.props.getTrainingsList(this.props.course.courseInfo.id);
+    this.props.getTrainingsList(this.props.courseId);
   }
 
   render(){

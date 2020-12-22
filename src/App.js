@@ -18,6 +18,7 @@ import Profile from './components/profile/Profile'
 import MyCoursesList from './components/courses/MyCoursesList'
 import Admin from './components/admin/Admin'
 import Course from './components/course/Course'
+import Training from './components/training/Training'
 import browserHistory from 'history/createBrowserHistory'
 const history =browserHistory();
 
@@ -40,6 +41,7 @@ function App() {
             <Route history={history} path='/courses' component={MyCoursesList} />
             <Route history={history} path='/course/:id' component={Course} />
             <Route history={history} path='/admin' component={Admin} />
+            <Route history={history} path='/training/:id' component={Training} />
           </Switch>
         </React.Fragment>
       </BrowserRouter>

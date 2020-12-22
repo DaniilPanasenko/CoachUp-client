@@ -7,6 +7,7 @@ import profile from './profile'
 import myCoursesList from './myCoursesList'
 import admin from './admin'
 import course from './course'
+import training from './training'
 
 export default combineReducers(
   {
@@ -16,5 +17,6 @@ export default combineReducers(
     profile: profile,
     myCoursesList: myCoursesList,
     admin: admin,
-    course: course
+    course: course,
+    training: training
   })
