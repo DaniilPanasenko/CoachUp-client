@@ -47,23 +47,34 @@ class Info extends React.Component{
                       {
                         this.props.profile.ratePoints+" "
                       }
-                       points (
+                       <Trans>points</Trans> (
                       {
                         this.props.profile.ratePlace+" "
                       }
-                       place)
+                       <Trans>place</Trans>)
                       </button>
+                      {this.props.profile.isCoach?
+                      <button type="button" class="col ml-3 btn btn-info btn-lg"><Trans>Subscribers</Trans>
+                        <span class="ml-2 badge badge-light badge-pill notifications">{this.props.profile.countSubscribers}</span>
+                      </button>:
                       <button type="button" class="col ml-3 btn btn-info btn-lg"><Trans>Friends</Trans>
                         <span class="ml-2 badge badge-light badge-pill notifications">{this.props.profile.countFriends}</span>
                       </button>
-                      <button type="button" class="col ml-3 btn btn-info btn-lg"><Trans>Subscribes</Trans>
-                        <span class="ml-2 badge badge-light badge-pill notifications">{this.props.profile.countSubscribes}</span>
-                      </button>
+                      }
+                      {!this.props.profile.isCoach?
+                        <button type="button" class="col ml-3 btn btn-info btn-lg"><Trans>Subscribes</Trans>
+                          <span class="ml-2 badge badge-light badge-pill notifications">{this.props.profile.countSubscribes}</span>
+                        </button>:null
+                      }
                     </div>
+                    {this.props.profile.login!=this.props.user.login && !this.props.user.isCoach?
                     <div class="row d-flex align-items-end mt-3 pr-3">
-                      <button type="button" class="mt-auto col-12 ml-3 btn btn-success btn-lg"><Trans>Add to friends</Trans>
-                      </button>
-                    </div>
+                      {this.props.profile.isCoach?
+                      <button type="button" class="mt-auto col-12 ml-3 btn btn-success btn-lg"><Trans>Subscribe</Trans></button>:
+                      <button type="button" class="mt-auto col-12 ml-3 btn btn-success btn-lg"><Trans>Add to friends</Trans></button>
+                      }
+                    </div>:null
+                    }
                   </div>
                 </div>
               </div>

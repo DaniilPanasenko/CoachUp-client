@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux'
 import { Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core'
 
-class Course extends React.Component{
+class Training extends React.Component{
 
   handleClick = () => {
-    this.props.history.push('/course/'+this.props.courseId);
+    this.props.history.push('/training/'+this.props.trainingId);
   }
 
   render(){
@@ -20,10 +20,6 @@ class Course extends React.Component{
               <h3 class="col-9 text-left">
                 {this.props.name}
               </h3>
-              <h3 class="col-3 text-right">
-                {this.props.countMebers}
-                <i class=" ml-2 fa fa-user"></i>
-              </h3>
             </div>
           </button>
         </div>
@@ -31,4 +27,4 @@ class Course extends React.Component{
   }
 }
 
-export default Course;
+export default Training;

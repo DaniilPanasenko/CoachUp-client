@@ -1,9 +1,11 @@
 import {
-  SET_COURSE_INFO
+  SET_COURSE_INFO,
+  SET_TRAININGS_LIST
 } from '../actions/types'
 
 const initialState = {
-  courseInfo:{}
+  courseInfo:{},
+  trainings:[]
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -11,6 +13,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         courseInfo:action.payload
+      }
+    case SET_TRAININGS_LIST:
+      return{
+        ...state,
+        trainings:action.payload
       }
     default:
       return state

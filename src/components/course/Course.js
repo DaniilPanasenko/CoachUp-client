@@ -5,6 +5,7 @@ import { Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core'
 import { getInfo } from '../../actions/course'
 import  Info  from './Info'
+import TrainingsList from './TrainingsList'
 
 class Course extends React.Component{
 
@@ -17,6 +18,7 @@ class Course extends React.Component{
       return (
         <div>
           <Info />
+          <TrainingsList history={this.props.history}/>
         </div>
       );
   }
